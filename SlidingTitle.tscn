@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://SlidingTitle.gd" type="Script" id=1]
+[ext_resource path="res://Images/button/button-01.png" type="Texture" id=2]
+[ext_resource path="res://Images/button/button-02.png" type="Texture" id=3]
+
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://Fonts/rattytatty/Ratty Tatty/RattyTatty.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 80
+font_data = SubResource( 3 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "start"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( -138.5, -0.25, 0, 0.25, 0, 112.5, -0.25, 0, 0.119969, 0, 25.5, -0.117361, 1, 0.0378365, -0.322394, 81.5, -0.0339044, -38, 0.141171, 158.224 ),
+"times": PoolRealArray( -0.00130401, 0.588111, 0.898466, 0.996267 )
+}
+
+[node name="SlidingTitle" type="Node2D"]
+position = Vector2( 360, 81.5 )
+scale = Vector2( 2, 2 )
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -154.0
+margin_top = -38.0
+margin_right = 154.0
+margin_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Test"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/start = SubResource( 2 )

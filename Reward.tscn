@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Reward.gd" type="Script" id=1]
+[ext_resource path="res://Images/card/diamond-01.png" type="Texture" id=2]
+[ext_resource path="res://Images/card/diamond-02.png" type="Texture" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://Fonts/rattytatty/Ratty Tatty/RattyTatty.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 120
+font_data = SubResource( 2 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "slide"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Node2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 770.351, -0.25, 0, 0.25, 0, -106.993, -0.25, 0, 0.0490358, 0, 21.3986, -0.0527135, 1.52588e-05, 0.25, -7.23667e-05 ),
+"times": PoolRealArray( 0.00245179, 0.760055, 0.997879 )
+}
+
+[node name="Reward" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0.784314 )
+margin_right = 720.0
+margin_bottom = 1080.0
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 770.351, 61.2856 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Node2D"]
+position = Vector2( 387.212, 519.4 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+playing = true
+
+[node name="Label" type="Label" parent="Node2D"]
+margin_left = 215.14
+margin_top = 477.005
+margin_right = 314.14
+margin_bottom = 590.005
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "+2"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/slide = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="stop"]

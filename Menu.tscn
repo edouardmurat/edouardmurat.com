@@ -1,0 +1,204 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Menu.gd" type="Script" id=1]
+[ext_resource path="res://Images/level/sky.png" type="Texture" id=2]
+[ext_resource path="res://Images/button/button-01.png" type="Texture" id=3]
+[ext_resource path="res://Images/button/button-02.png" type="Texture" id=4]
+[ext_resource path="res://SlidingTitle.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 150, 75 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://Fonts/rattytatty/Ratty Tatty/RattyTatty.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 99
+font_data = SubResource( 3 )
+
+[sub_resource type="DynamicFontData" id=5]
+font_path = "res://Fonts/rattytatty/Ratty Tatty/RattyTatty.ttf"
+
+[sub_resource type="DynamicFont" id=6]
+size = 35
+extra_spacing_bottom = -6
+font_data = SubResource( 5 )
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+void fragment() {
+	vec3 color = texture(TEXTURE, UV).rgb;
+	COLOR.rgb = vec3(1.0) - color;
+	COLOR.a = texture(TEXTURE, UV).a;
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "slide_question"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Question:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1042.75, -0.25, 0, 0.25, 0, 364.074, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.00407522, 0.495139 )
+}
+
+[node name="Menu" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 360, 540 )
+texture = ExtResource( 2 )
+
+[node name="PlayTouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2( 350, 303 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="PlayTouchScreenButton"]
+position = Vector2( 7.68427, 9.54982 )
+frames = SubResource( 2 )
+frame = 1
+playing = true
+
+[node name="Label" type="Label" parent="PlayTouchScreenButton"]
+margin_left = -114.399
+margin_top = -50.7048
+margin_right = 127.601
+margin_bottom = 90.2952
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Play"
+align = 1
+
+[node name="ShopTouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2( 350, 464 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="ShopTouchScreenButton"]
+position = Vector2( 7.68427, 9.54982 )
+frames = SubResource( 2 )
+playing = true
+
+[node name="Label" type="Label" parent="ShopTouchScreenButton"]
+margin_left = -114.399
+margin_top = -59.7048
+margin_right = 127.601
+margin_bottom = 81.2952
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Shop"
+align = 1
+
+[node name="SettingsTouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2( 350, 626 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="SettingsTouchScreenButton"]
+position = Vector2( 7.68427, 9.54982 )
+frames = SubResource( 2 )
+playing = true
+
+[node name="Label" type="Label" parent="SettingsTouchScreenButton"]
+margin_left = -151.399
+margin_top = -53.7048
+margin_right = 164.601
+margin_bottom = 87.2952
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Settings"
+align = 1
+
+[node name="Question" type="Sprite" parent="."]
+position = Vector2( 1042.75, 839.479 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="Question"]
+margin_left = -136.0
+margin_top = -83.3333
+margin_right = 131.0
+margin_bottom = -4.33334
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Enjoying EdNoKa?"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NoTouchScreenButton" type="TouchScreenButton" parent="Question"]
+position = Vector2( -75.2643, 17.6807 )
+scale = Vector2( 0.4, 0.4 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Question/NoTouchScreenButton"]
+position = Vector2( 7.68427, 9.54982 )
+frames = SubResource( 2 )
+frame = 1
+playing = true
+
+[node name="Label" type="Label" parent="Question/NoTouchScreenButton"]
+margin_left = -123.216
+margin_top = -29.2163
+margin_right = 252.784
+margin_bottom = 63.7837
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.7, 0.7 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Not really"
+align = 1
+
+[node name="YesTouchScreenButton" type="TouchScreenButton" parent="Question"]
+position = Vector2( 69.4024, 17.6807 )
+scale = Vector2( 0.4, 0.4 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Question/YesTouchScreenButton"]
+material = SubResource( 8 )
+position = Vector2( 7.68427, 9.54982 )
+frames = SubResource( 2 )
+playing = true
+
+[node name="Label" type="Label" parent="Question/YesTouchScreenButton"]
+margin_left = -151.0
+margin_top = -42.3334
+margin_right = 165.0
+margin_bottom = 50.6666
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 4 )
+text = "Yes!"
+align = 1
+
+[node name="SlidingTitle" parent="." instance=ExtResource( 5 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/slide_question = SubResource( 9 )
+[connection signal="released" from="PlayTouchScreenButton" to="." method="_on_PlayTouchScreenButton_released"]
+[connection signal="released" from="ShopTouchScreenButton" to="." method="_on_ShopTouchScreenButton_released"]
+[connection signal="released" from="SettingsTouchScreenButton" to="." method="_on_SettingsTouchScreenButton_released"]
+[connection signal="released" from="Question/NoTouchScreenButton" to="." method="_on_NoTouchScreenButton_released"]
+[connection signal="released" from="Question/YesTouchScreenButton" to="." method="_on_YesTouchScreenButton_released"]

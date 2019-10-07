@@ -1,0 +1,192 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Card.gd" type="Script" id=1]
+[ext_resource path="res://Images/card/front0001.png" type="Texture" id=2]
+[ext_resource path="res://Images/card/front0002.png" type="Texture" id=3]
+[ext_resource path="res://Images/card/back0001.png" type="Texture" id=4]
+[ext_resource path="res://Images/card/back0002.png" type="Texture" id=5]
+[ext_resource path="res://Images/card/deck0001.png" type="Texture" id=6]
+[ext_resource path="res://Images/card/deck0002.png" type="Texture" id=7]
+[ext_resource path="res://Images/card/money0001.png" type="Texture" id=8]
+[ext_resource path="res://Images/card/money0002.png" type="Texture" id=9]
+[ext_resource path="res://Images/card/sword0001.png" type="Texture" id=10]
+[ext_resource path="res://Images/card/sword0002.png" type="Texture" id=11]
+[ext_resource path="res://Images/card/potion0001.png" type="Texture" id=12]
+[ext_resource path="res://Images/card/potion0002.png" type="Texture" id=13]
+[ext_resource path="res://Images/card/shield0001.png" type="Texture" id=14]
+[ext_resource path="res://Images/card/shield0002.png" type="Texture" id=15]
+[ext_resource path="res://Font.tres" type="DynamicFont" id=16]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 46, 68 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "front",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "back",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "deck",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "money",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "sword",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "potion",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "shield",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://Fonts/rattytatty/Ratty Tatty/RattyTatty.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+size = 23
+extra_spacing_char = -2
+font_data = SubResource( 4 )
+
+[sub_resource type="Animation" id=6]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.9, 0.9 ), Vector2( 0.1, 0.9 ), Vector2( 0.9, 0.9 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( -0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "back", "front" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( -0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ValueLabel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( -0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("TypeLabel:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( -0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="Card" type="TouchScreenButton" groups=[
+"card",
+]]
+scale = Vector2( 0.9, 0.9 )
+shape = SubResource( 1 )
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "front"
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+position = Vector2( 2.52791, -0.000126839 )
+scale = Vector2( 0.4, 0.4 )
+frames = SubResource( 3 )
+animation = "money"
+
+[node name="ValueLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 16.7858
+margin_top = -105.468
+margin_right = 44.7858
+margin_bottom = -71.4672
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = ExtResource( 16 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+text = "5"
+align = 1
+valign = 1
+
+[node name="TypeLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -84.9588
+margin_top = 45.3784
+margin_right = 30.0412
+margin_bottom = 74.3784
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 1.5, 1.5 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = -3
+text = "concentration"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/flip_front = SubResource( 6 )
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="pressed" from="." to="." method="_on_Card_pressed"]
+[connection signal="released" from="." to="." method="_on_Card_released"]

@@ -1,0 +1,99 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Bubble.gd" type="Script" id=1]
+[ext_resource path="res://Images/enemy/bubble0005.png" type="Texture" id=2]
+[ext_resource path="res://Images/enemy/bubble0006.png" type="Texture" id=3]
+[ext_resource path="res://Images/enemy/bubble0007.png" type="Texture" id=4]
+[ext_resource path="res://Images/enemy/bubble0008.png" type="Texture" id=5]
+[ext_resource path="res://Images/enemy/bubble0009.png" type="Texture" id=6]
+[ext_resource path="res://Images/enemy/bubble0003.png" type="Texture" id=7]
+[ext_resource path="res://Images/enemy/bubble0004.png" type="Texture" id=8]
+[ext_resource path="res://Images/enemy/bubble0001.png" type="Texture" id=9]
+[ext_resource path="res://Images/enemy/bubble0002.png" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "bubble-3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "die",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "bubble-2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "bubble-1",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=2]
+resource_name = "attack"
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "glow_attack"
+}, {
+"args": [  ],
+"method": "no_glow"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "die"
+tracks/0/type = "method"
+tracks/0/path = NodePath("AnimatedSprite")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "die", false ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ "bubble-1", "bubble-2", "bubble-3" ]
+}
+
+[node name="Bubble" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+animation = "bubble-1"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/attack = SubResource( 2 )
+anims/die = SubResource( 4 )
+anims/think = SubResource( 3 )
