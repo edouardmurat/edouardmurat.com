@@ -73,7 +73,6 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="PlayTouchScreenButton"]
 position = Vector2( 7.68427, 9.54982 )
 frames = SubResource( 2 )
-frame = 1
 playing = true
 
 [node name="Label" type="Label" parent="PlayTouchScreenButton"]
@@ -95,6 +94,7 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="ShopTouchScreenButton"]
 position = Vector2( 7.68427, 9.54982 )
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="Label" type="Label" parent="ShopTouchScreenButton"]
@@ -116,6 +116,7 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="SettingsTouchScreenButton"]
 position = Vector2( 7.68427, 9.54982 )
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="Label" type="Label" parent="SettingsTouchScreenButton"]
@@ -155,7 +156,6 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Question/NoTouchScreenButton"]
 position = Vector2( 7.68427, 9.54982 )
 frames = SubResource( 2 )
-frame = 1
 playing = true
 
 [node name="Label" type="Label" parent="Question/NoTouchScreenButton"]
@@ -180,6 +180,7 @@ shape = SubResource( 1 )
 material = SubResource( 8 )
 position = Vector2( 7.68427, 9.54982 )
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="Label" type="Label" parent="Question/YesTouchScreenButton"]

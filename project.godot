@@ -49,4 +49,6 @@ file_logging/enable_file_logging=true
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
 environment/default_environment="res://default_env.tres"
